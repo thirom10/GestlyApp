@@ -62,11 +62,6 @@ fun LoginScreen() {
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold)
 
-        Text(text = "Ingresa tus credenciales para ingresar al sistema",
-            style = MaterialTheme.typography.labelSmall,
-            fontWeight = FontWeight.Light)
-
-
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
@@ -90,7 +85,7 @@ fun LoginScreen() {
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(64.dp))
 
         Button(
             onClick = { /* Acción de login futura */ },
