@@ -48,6 +48,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             GestlyappTheme {
                 LoginScreen()
+                //Navbar()
             }
         }
     }
