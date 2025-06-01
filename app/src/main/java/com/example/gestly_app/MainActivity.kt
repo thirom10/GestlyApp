@@ -39,6 +39,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.layout.ContentScale
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 
 class MainActivity : ComponentActivity() {
@@ -47,15 +51,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GestlyappTheme {
-                LoginScreen()
-                //Navbar()
+                val navController = rememberNavController()
+                NavHost(navController, startDestination = "login") {
+                    composable("login") { LoginScreen(navController) }
+                    composable("home") { HomeScreen() }
+                }
             }
         }
     }
 }
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController : NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val background = painterResource(R.drawable.backgroundimage)
@@ -115,7 +122,7 @@ fun LoginScreen() {
             Spacer(modifier = Modifier.height(48.dp))
 
             Button(
-                onClick = { /* Acción de login futura */ },
+                onClick = { navController.navigate("home") },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.secondary,
@@ -126,5 +133,18 @@ fun LoginScreen() {
 
             }
         }
+    }
+}
+
+@Composable
+fun HomeScreen() {
+    Scaffold(
+        bottomBar = { Navbar() }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        )
     }
 }
